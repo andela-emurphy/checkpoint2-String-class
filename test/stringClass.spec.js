@@ -84,106 +84,81 @@ describe('String Class', function() {
   })
 
   describe('Prototype wordCount', function() {
-    it('should return true if a string is a question', function() {
+    it('should return tnumber of words in a string', function() {
       var sentence = 'welcome to my world';
-      expect(String.words(sentence)).toEqual(['welcome', 'to', 'my', 'world']);
+      expect(String.wordCount(sentence)).toEqual(4);
     })
 
-    it('should call a regex method', function() {
+    it('should call words method', function() {
       var sentence = 'welcome to my world';
-      spyOn(String.prototype, 'match')
-      expect(String.isQuestion(sentence)).toHaveBeenCalled()
+      spyOn(String.prototype, 'word')
+      expect(String.wordCount(sentence)).toHaveBeenCalled()
     });
   })
 
   describe('Prototype toCurrency', function() {
-    it('should return true if a string is a question', function() {
-      var sentence = 'welcome to my world';
-      expect(String.words(sentence)).toEqual(['welcome', 'to', 'my', 'world']);
+    it('should return currency representation of a string', function() {
+      var currency = '56878746.00';
+      expect(String.toCurrency(currency)).toEqual('56,878,746.00');
     })
-
-    it('should call a regex method', function() {
-      var sentence = 'welcome to my world';
-      spyOn(String.prototype, 'match')
-      expect(String.isQuestion(sentence)).toHaveBeenCalled()
-    });
   })
 
   describe('Prototype fromCurrency', function() {
-    it('should return true if a string is a question', function() {
-      var sentence = 'welcome to my world';
-      expect(String.words(sentence)).toEqual(['welcome', 'to', 'my', 'world']);
+    it('should return number representation of currency string', function() {
+      var currency = '56,878,746.00';
+      expect(String.fromCurrency(currency)).toEqual('56878746.00');
     })
+  })
 
-    it('should call a regex method', function() {
-      var sentence = 'welcome to my world';
-      spyOn(String.prototype, 'match')
-      expect(String.isQuestion(sentence)).toHaveBeenCalled()
-    });
+  describe('Prototype inversecase', function() {
+    it('should return letters in alternating cases', function() {
+      var word = 'Mr. Ben';
+      expect(String.inverseCase(word)).toEqual('mR. bEN');
+    })
   })
 
   describe('Prototype alternatingCase', function() {
     it('should return true if a string is a question', function() {
-      var sentence = 'welcome to my world';
-      expect(String.words(sentence)).toEqual(['welcome', 'to', 'my', 'world']);
+      var word = 'Onomatopoeia';
+      expect(String.alternatingCase(word)).toEqual('oNoMaToPoEiA');
     })
 
-    it('should call a regex method', function() {
-      var sentence = 'welcome to my world';
-      spyOn(String.prototype, 'match')
-      expect(String.isQuestion(sentence)).toHaveBeenCalled()
+    it('should start with a lower case', function() {
+      var word = 'Mr. Ben';
+      var inversedWord = String.inverseCase(word)
+      expect(inversedWord[0] === 'm').toBeTruthy()
     });
   })
 
   describe('Prototype getMiddle', function() {
-    it('should return true if a string is a question', function() {
-      var sentence = 'welcome to my world';
-      expect(String.words(sentence)).toEqual(['welcome', 'to', 'my', 'world']);
+    it('should return the middle of the string', function() {
+      var firstWord = 'read';
+      var sencondWord = 'reads'
+      expect(String.getMiddle(firstWord)).toEqual('ea');
+      expect(String.getMiddle(secondWand)).toEqual('a');
     })
-
-    it('should call a regex method', function() {
-      var sentence = 'welcome to my world';
-      spyOn(String.prototype, 'match')
-      expect(String.isQuestion(sentence)).toHaveBeenCalled()
-    });
   })
 
   describe('Prototype numberWords', function() {
-    it('should return true if a string is a question', function() {
-      var sentence = 'welcome to my world';
-      expect(String.words(sentence)).toEqual(['welcome', 'to', 'my', 'world']);
+    it('should return numbers in words', function() {
+      var number = 325;
+      expect(String.numberWords(num)).toEqual('three two five');
     })
-
-    it('should call a regex method', function() {
-      var sentence = 'welcome to my world';
-      spyOn(String.prototype, 'match')
-      expect(String.isQuestion(sentence)).toHaveBeenCalled()
-    });
   })
 
   describe('Prototype isDigit', function() {
-    it('should return true if a string is a question', function() {
-      var sentence = 'welcome to my world';
-      expect(String.words(sentence)).toEqual(['welcome', 'to', 'my', 'world']);
+    it('should return true if the string is a digit(one number)', function() {
+      var firstNnumber = 3;
+      var secondNumber = 34
+      expect(String.isDigit(firstNnumber)).toBeTruthy();
+      expect(String.isDigit(secondNumber)).toBeFalsy()
     })
-
-    it('should call a regex method', function() {
-      var sentence = 'welcome to my world';
-      spyOn(String.prototype, 'match')
-      expect(String.isQuestion(sentence)).toHaveBeenCalled()
-    });
   })
 
   describe('Prototype doubleCheck', function() {
-    it('should return true if a string is a question', function() {
+    it('should return true f a string contains double characters', function() {
       var sentence = 'welcome to my world';
-      expect(String.words(sentence)).toEqual(['welcome', 'to', 'my', 'world']);
+      expect(String.doubleCheck(sentence)).toEqual(['welcome', 'to', 'my', 'world']);
     })
-
-    it('should call a regex method', function() {
-      var sentence = 'welcome to my world';
-      spyOn(String.prototype, 'match')
-      expect(String.isQuestion(sentence)).toHaveBeenCalled()
-    });
   })
 });
