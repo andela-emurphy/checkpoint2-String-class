@@ -1,0 +1,25 @@
+{
+  "name": "string_class",
+  "version": "1.0.0",
+  "description": "Adds more feature for manipulating string",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "enaho murphy",
+  "license": "ISC",
+
+  "devDependencies": {
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-coverage": "^1.1.1",
+    "karma-coveralls": "^1.1.2",
+    "karma-jasmine": "^1.0.2",
+    "karma-phantomjs-launcher": "~1.0.2",
+    "karma-requirejs": "^1.1.0",
+    "requirejs": "^2.3.2"
+  }
+}
+
