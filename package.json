@@ -11,8 +11,8 @@
   },
   "author": "enaho murphy",
   "license": "ISC",
-
   "devDependencies": {
+    "istanbul": "^0.4.5",
     "karma-chrome-launcher": "^2.0.0",
     "karma-coverage": "^1.1.1",
     "karma-coveralls": "^1.1.2",
@@ -22,4 +22,3 @@
     "requirejs": "^2.3.2"
   }
 }
-
