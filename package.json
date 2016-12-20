@@ -4,7 +4,7 @@
   "description": "Adds more feature for manipulating string",
   "main": "server.js",
   "directories": {
-    "test": "test"
+    "test": "./node_modules/karma/bin/karma start karma.conf.js --single-run"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
