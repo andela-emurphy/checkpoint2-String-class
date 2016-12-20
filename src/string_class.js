@@ -5,7 +5,7 @@ const StringProtoype = {
 
   /**
    * Checks if string contains vowels.
-   * @return {Boolean}
+   * @return {Boolean} Returns true or flase.
    */
   hasVowels() {
     return /[aeiou]/ig.test(this);
@@ -13,27 +13,28 @@ const StringProtoype = {
 
   /**
    * Converts all characters in string to upper case.
-   * @return {String}
+   * @return {String} Returns all characters in uppercase.
    */
   toUpper() {
-    return this.replace(/[a-z]/g, function (char) {
+    return this.replace(/[a-z]/g, function(char) {
       return String.fromCharCode(char.charCodeAt() - 32);
     });
   },
 
   /**
-   * Converts first Character of a string to an Upper case.
-   * @return {String}
+   * C Converts all characters in string to lower case.
+   * @return {String} Returns first character in lowercase.
    */
   toLower() {
-    return this.replace(/[A-Z]/g, function (char) {
+    return this.replace(/[A-Z]/g, function(char) {
       return String.fromCharCode(char.charCodeAt() + 32);
     });
   },
 
   /**
-   * Converts all characters in string to lower case.
-   * @return {String}
+   *
+   * Converts first Character of a string to an Upper case.
+   * @return {String} Returns first character as string.
    */
   ucFirst() {
     return this[0].toUpper() + this.slice(1);
@@ -41,7 +42,7 @@ const StringProtoype = {
 
   /**
    * Checks if a string is a question.
-   * @return {Boolean}
+   * @return {Boolean} Returns true or false.
    */
   isQuestion() {
     return /\?$/.test(this);
@@ -49,27 +50,27 @@ const StringProtoype = {
 
   /**
    * Creates a list of the words in the string, as an Array.
-   * @return {Array}
+   * @return {Array} Returns a list of words.
    */
   words() {
     return this.replace(/[^a-z]+\s/gi, '').split(/\s/);
   },
 
   /**
-   * Returns the number of words in the string.
-   * @return {Integer}
+   * Checks the number of words in the string.
+   * @return {Integer} Returns the count of words in string.
    */
   wordCount() {
     return this.words().length;
   },
 
   /**
-   * Returns a currency representation of the String.
-   * @return {String}
+   * Creates a currency representation of the String.
+   * @return {String} Returns string a currency.
    */
   toCurrency() {
-    return this.replace(/./g, function (char, index, arr) {
-      return index && char !== "." &&
+    return this.replace(/./g, function(char, index, arr) {
+      return index && char !== "." && 
         ((arr.length - index) % 3 === 0) ? ',' + char : char;
     });
   },
@@ -83,39 +84,39 @@ const StringProtoype = {
   },
 
   /**
-   * Returns each letter in the string as an inverse.
-   * @return {String}
+   * Converts each letter in a string to its inverse.
+   * @return {String} Returns inverse of string.
    */
   inverseCase() {
-    return this.replace(/[a-z]/gi, function (char) {
-      return char === char.toUpper() ? char.toLower() : char.toUpper();
+    return this.replace(/[a-z]/gi, function(char) {
+      return char === char.toUpper()? char.toLower() : char.toUpper();
     });
   },
 
 
   /**
-   * Returns the letters in alternating cases.
-   * @return {String}
+   * Converts each letters in a string to its alternating cases.
+   * @return {String} Returns a string of alternate characters
    */
   alternatingCase() {
-    return this.replace(/[a-z]/gi, function (char, index) {
+    return this.replace(/[a-z]/gi, function(char, index) {
       return index % 2 === 0 ? char.toLower() : char.toUpper();
     });
   },
 
   /**
-   *  Returns the character(s) in the middle of the string
-   * 
+   * Returns the character(s) in the middle of the string
+   * @return {String}  
    */
   getMiddle() {
     const middle = Math.round(this.length / 2);
-    return this.length % 2 ?
-      this[middle - 1] : this.slice(middle - 1, middle + 1);
-
+    return this.length % 2? 
+      this[middle - 1] : this.slice(middle -1, middle +1 );
   },
 
   /**
-   * Returns the numbers in words.
+   * Converts numbers to words.
+   * @return {String} Returns a string of words.
    */
   numberWords() {
     const numbers = ['zero', 'one', 'two', 'three', 'four',
@@ -127,14 +128,16 @@ const StringProtoype = {
   },
 
   /**
-   * Returns true if the string is a digit(one number).
-   */
+   * Checks true if the string is a digit(one number).
+   * @return {Boolean} Returns true or false.
+   */ 
   isDigit() {
     return /^\d$/.test(this);
   },
 
   /**
-   * Returns true if a string contains double characters.
+   * Checks if a string contains double characters.
+   * @returns {Boolean} Returns true or false.
    */
   doubleCheck() {
     return /(.)\1/.test(this);

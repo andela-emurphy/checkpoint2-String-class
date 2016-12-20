@@ -26,8 +26,10 @@ module.exports = function(config) {
 
 
     // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+    // available preprocessors: 
+    //https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      './src/string_class.js': 'coverage'
     },
 
 
@@ -42,6 +44,18 @@ module.exports = function(config) {
       dir: 'coverage/'
     },
 
+    //custom browse luncher
+    customLaunchers: {
+      Chrome_travis_ci: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
+    },
+
+    coverallsReporter: {
+      repo_token: 'EEurTQ616KvF7GfIVqeq1oa9cdZkcHTxp'
+    },
+
     // web server port
     port: 9876,
 
@@ -51,21 +65,24 @@ module.exports = function(config) {
 
 
     // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+    // possible values: config.LOG_DISABLE || 
+    //config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_INFO,
 
 
-    // enable / disable watching file and executing tests whenever any file changes
+    // enable / disable watching file and 
+    // executing tests whenever any file changes
     autoWatch: true,
 
 
     // start these browsers
-    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    // available browser launchers: h
+    //ttps://npmjs.org/browse/keyword/karma-launcher
+    browsers: process.env.TRAVIS ? ['Chrome_travis_ci'] : ['Chrome'],
 
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false
+    singleRun: true
   });
 };
