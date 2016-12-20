@@ -15,8 +15,8 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'src/string_class.js',
-      'test/stringClass.spec.js'
+      './src/string_class.js',
+      './test/stringClass.spec.js'
     ],
 
 
