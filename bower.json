@@ -1,0 +1,21 @@
+{
+  "name": "string_class",
+  "description": "Adds more feature for manipulating string",
+  "main": "server.js",
+  "authors": [
+    "enaho murphy"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/andela-emurphy/checkpoint2-String-class",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
