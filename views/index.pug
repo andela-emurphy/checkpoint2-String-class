@@ -1,9 +1,8 @@
-htmldoctype
 html(lang="en")
   head
     title String class
     link(rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css")
-    link(rel="stylesheet" href="./css/style.css")
+    link(rel="stylesheet" href="./src/css/style.css")
   body
     nav.navbar.navbar-default(role='navigation')
       .navbar-header
@@ -12,24 +11,57 @@ html(lang="en")
           span.icon-bar
           span.icon-bar
           span.icon-bar
-        a.navbar-brand(href='#') Title
+        a.navbar-brand(href='#') Andela String Class
       .collapse.navbar-collapse.navbar-ex1-collapse
         ul.nav.navbar-nav.navbar-right
           li
-            a(href='#') About String Class
+            a(href='#' id="about-link") About String Class
 
-    .col-md-8
-      form
-        legend Form title
-        .form-group
-          label(for='') Select a Sring Method
-          select.form-control#string-method
-            option(value='toUpperCase') toUpperCase
-        .form-group
-          label(for='string-value')
-          input.form-control(type='text')
-        button.btn.btn-primary(type='submit') Submit
+    .container
+      .row
+        .col-md-6
+          form
+            legend Select a Sring Method
+            .input-group
+              span.input-group-addon String Methods
+              select.form-control#string-method
+                option --select a method--
+                each detail, method in stringMethod
+                  option(value=method)= method
+            .input-group
+              span.input-group-addon enter a string
+              input.form-control(type='text' id="string-value")
+            pre
+              h4 Result
+              #string-result
+            button.btn.btn-primary(type='submit') Submit
+        .col-md-6
+          .about 
+            pre
+              h2 About String Class
+              p String class is an Andela checkpoint project that improves the native javascript String Object. 
+              p This Project is meant to add additional features to the String Object by extending it's prototype.
+              h2 List Of New Methods Added.
+              ol
+                each detail, method in stringMethod
+                  li=method
+              p You can get the source code of this project on github 
+              a(href="github.com/andela-emurphy/checkpoint2-String-class" class="btn btn-default") Click here
+          .details
+            pre
+              h1 
+                u STRING METHOD DETAILS
+              each detail, method in stringMethod
+                div(id=method)
+                  h2= method
+                  p= detail
 
+    .footer
+      .container
+        .row
+          .col-md-12
+            p &copy 2017 Andela String Class inc
     script(src="./bower_components/jquery/dist/jquery.min.js")
     script(src="./bower_components/bootstrap/dist/js/bootstrap.min.js")
-    script(src="./js/script.js")
+    script(src="./src/string_class.js")
+    script(src="./src/js/script.js")

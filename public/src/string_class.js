@@ -16,23 +16,22 @@ const StringProtoype = {
    * @return {String} Returns all characters in uppercase.
    */
   toUpper() {
-    return this.replace(/[a-z]/g, function(char) {
+    return this.replace(/[a-z]/g, function (char) {
       return String.fromCharCode(char.charCodeAt() - 32);
     });
   },
 
   /**
-   * C Converts all characters in string to lower case.
+   * Converts all characters in string to lower case.
    * @return {String} Returns first character in lowercase.
    */
   toLower() {
-    return this.replace(/[A-Z]/g, function(char) {
+    return this.replace(/[A-Z]/g, function (char) {
       return String.fromCharCode(char.charCodeAt() + 32);
     });
   },
 
   /**
-   *
    * Converts first Character of a string to an Upper case.
    * @return {String} Returns first character as string.
    */
@@ -58,7 +57,7 @@ const StringProtoype = {
 
   /**
    * Checks the number of words in the string.
-   * @return {Integer} Returns the count of words in string.
+   * @return {Number} Returns the count of words in string.
    */
   wordCount() {
     return this.words().length;
@@ -69,18 +68,22 @@ const StringProtoype = {
    * @return {String} Returns string a currency.
    */
   toCurrency() {
-    return this.replace(/./g, function(char, index, arr) {
-      return index && char !== "." && 
-        ((arr.length - index) % 3 === 0) ? ',' + char : char;
-    });
+    const dotIndex = this.indexOf('.');
+    let newString = this;
+    if (dotIndex > -1) {
+      let decimal = this.substr(dotIndex, 3);
+      decimal = decimal.length < 3 ? decimal + 0 : decimal;
+      newString = this.substring(0, dotIndex) + decimal;
+    }
+    return newString.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
   },
 
   /**
    * Returns a number representation of the Currency String.
-   * @return {String}
+   * @return {Number}
    */
   fromCurrency() {
-    return this.replace(/,/g, '');
+    return parseFloat(this.replace(/,/g, ''));
   },
 
   /**
@@ -88,8 +91,8 @@ const StringProtoype = {
    * @return {String} Returns inverse of string.
    */
   inverseCase() {
-    return this.replace(/[a-z]/gi, function(char) {
-      return char === char.toUpper()? char.toLower() : char.toUpper();
+    return this.replace(/[a-z]/gi, function (char) {
+      return char === char.toUpper() ? char.toLower() : char.toUpper();
     });
   },
 
@@ -99,7 +102,7 @@ const StringProtoype = {
    * @return {String} Returns a string of alternate characters
    */
   alternatingCase() {
-    return this.replace(/[a-z]/gi, function(char, index) {
+    return this.replace(/[a-z]/gi, function (char, index) {
       return index % 2 === 0 ? char.toLower() : char.toUpper();
     });
   },
@@ -110,8 +113,8 @@ const StringProtoype = {
    */
   getMiddle() {
     const middle = Math.round(this.length / 2);
-    return this.length % 2? 
-      this[middle - 1] : this.slice(middle -1, middle +1 );
+    return this.length % 2 ?
+      this[middle - 1] : this.slice(middle - 1, middle + 1);
   },
 
   /**
@@ -122,15 +125,15 @@ const StringProtoype = {
     const numbers = ['zero', 'one', 'two', 'three', 'four',
       'five', 'six', 'seven', 'eight', 'nine'
     ];
-    return this.replace(/[\d]/g, function (num) {
+    return this.replace(/\d/g, function (num) {
       return numbers[num] + " ";
     }).trim();
   },
 
   /**
-   * Checks true if the string is a digit(one number).
+   * Checks if a string is a digit(one number).
    * @return {Boolean} Returns true or false.
-   */ 
+   */
   isDigit() {
     return /^\d$/.test(this);
   },

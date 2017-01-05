@@ -1,17 +1,19 @@
 describe('String Class', () => {
-  
+
   describe('Prototype hasVowels', () => {
     it('should return true if vowel is found', () => {
       expect('Andela'.hasVowels()).toBeTruthy();
+      expect('Average'.hasVowels()).toBeTruthy();
     });
 
     it('should return false if vowel is not found', () => {
       expect('rythm'.hasVowels()).toBeFalsy();
+      expect('Dr'.hasVowels()).toBeFalsy();
     });
   });
 
   describe('Prototype toUpper', () => {
-    it('should not call  toUpperCase method', () => {
+    it('should not call toUpperCase method', () => {
       const sentence = 'Andela is awesome';
       spyOn(String.prototype, 'toUpperCase');
       sentence.toUpper();
@@ -22,11 +24,12 @@ describe('String Class', () => {
       const sentence = 'Andela is awesome';
       const convertedSentence = 'ANDELA IS AWESOME';
       expect(sentence.toUpper()).toBe(convertedSentence);
+      expect('enaho murphy'.toUpper()).toBe('ENAHO MURPHY');
     });
   });
 
   describe('Prototype toLower', () => {
-    it('should not call the toUpperCase method', () => {
+    it('should not call the toLowerCase method', () => {
       const sentence = 'ANDELA IS awesome';
       spyOn(String.prototype, 'toLowerCase');
       sentence.toLower();
@@ -89,9 +92,16 @@ describe('String Class', () => {
   });
 
   describe('Prototype wordCount', () => {
+    it('should return a type number', () => {
+      const sentence = 'welcome to my world';
+      const valueReturned = sentence.wordCount();
+      expect(typeof valueReturned === 'number').toBeTruthy();
+    });
+
     it('should return number of words in a string', () => {
       const sentence = 'welcome to my world';
       expect(sentence.wordCount()).toEqual(4);
+      expect('sentence'.wordCount()).toEqual(1);
     });
 
     it('should call words method', () => {
@@ -106,13 +116,21 @@ describe('String Class', () => {
     it('should return currency representation of a string', () => {
       const currency = '56878746.00';
       expect(currency.toCurrency()).toEqual('56,878,746.00');
+      expect('123747.2222'.toCurrency()).toEqual('123,747.22');
+      expect('111111.2'.toCurrency()).toEqual('111,111.20');
     });
   });
 
   describe('Prototype fromCurrency', () => {
+    it('should return a type number', () => {
+      const currency = '56,878,746.00';
+      const returnedValue = currency.fromCurrency();
+      expect(typeof returnedValue === 'number').toBeTruthy();
+    });
+
     it('should return number representation of currency string', () => {
       const currency = '56,878,746.00';
-      expect(currency.fromCurrency()).toEqual('56878746.00');
+      expect(currency.fromCurrency()).toEqual(56878746.00);
     });
   });
 
