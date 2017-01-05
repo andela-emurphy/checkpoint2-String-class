@@ -9,5 +9,8 @@ before_install:
   - sh -e /etc/init.d/xvfb start
 
 addons:
-    code_climate:
-        repo_token: ef9c3b1a2cba60e59084036067af1f9a651d2bd832ce23de2be6d61333d73928
+  code_climate:
+    repo_token: 137fb3a377b243c413d0ac4f743bed3e2b21a38230256dfbb71e888c1caf5078
+
+after_success:
+  - CODECLIMATE_REPO_TOKEN=137fb3a377b243c413d0ac4f743bed3e2b21a38230256dfbb71e888c1caf5078 codeclimate-test-reporter < ./coverage/**/lcov.info

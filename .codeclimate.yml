@@ -8,6 +8,6 @@ engines:
       - javascript
 ratings:
   paths:
-  - "src/*.js"
+  - "public/src/string_class.js"
 exclude_paths:
 - test/
