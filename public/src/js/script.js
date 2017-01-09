@@ -1,5 +1,4 @@
 /**
- * 
  * Displays information about the method been called.
  * @param {String} id - id of method to display
  * @returns {void}
@@ -7,9 +6,9 @@
 const showMethodDetail = (id) => {
   $('.details pre div').map((index, domElement) => {
     domElement.style.display = 'none';
-    if(id) {
+    if (id) {
       const attr = domElement.getAttribute('id');
-      if(id === attr) {
+      if (id === attr) {
         domElement.style.display = 'block';
       }
     }
@@ -23,24 +22,18 @@ const showMethodDetail = (id) => {
 const runMethod = () => {
   let result = null;
   const methodCalled = $('#string-method').val();
-  let value = $('#string-value').val(); 
-  if(methodCalled && value.length > 0) {
-    if(methodCalled in String.prototype) {
-      $('.details').css('display', 'block');
-      if(['isDigit', 'toCurrency'].includes(methodCalled)) {
-        if(isNaN(parseInt(value))) {
-          result = "Invalid input an interger is required";
-        } else {
-          result = value[methodCalled]();
-        }
-      } else {
-        result = value[methodCalled]();
-      }      
-      if(Array.isArray(result)) {
-        result = JSON.stringify(result);
-      }
-      displayResult(result);
+  let value = $('#string-value').val();
+  if (methodCalled in String.prototype && value.length > 0) {
+    $('.details').css('display', 'block');
+    try {
+      result = value[methodCalled]();
+    } catch (e) {
+      result = e.message;
     }
+    if (Array.isArray(result)) {
+      result = JSON.stringify(result);
+    }
+    displayResult(result);
   }
 };
 
@@ -53,7 +46,7 @@ const displayResult = (result) => {
   $('#string-result').text(result);
 };
 
-// Dhows method about string class
+// Shows method about string class
 $('#about-link').on('click', () => {
   $('.details').fadeOut();
   $('.about').fadeToggle();
@@ -73,5 +66,3 @@ $('form').on('submit', (event) => {
   runMethod();
   event.preventDefault();
 });
-
-

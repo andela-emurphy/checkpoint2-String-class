@@ -1,7 +1,7 @@
 // Karma configuration
 // Generated on Thu Dec 15 2016 04:59:07 GMT+0100 (WAT)
 
-module.exports = function(config) {
+module.exports = (config) => {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -26,7 +26,7 @@ module.exports = function(config) {
 
 
     // preprocess matching files before serving them to the browser
-    // available preprocessors: 
+    // available preprocessors:
     //https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
       'public/src/string_class.js': ['coverage']
@@ -37,14 +37,14 @@ module.exports = function(config) {
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     reporters: ['progress', 'coverage', 'coveralls'],
- 
-    //sets the format and folder for coverage report
+
+    // sets the format and folder for coverage report
     coverageReporter: {
       type: 'lcov',
       dir: 'coverage/'
     },
 
-    //custom browse luncher
+    // custom browser luncher
     customLaunchers: {
       Chrome_travis_ci: {
         base: 'Chrome',
@@ -65,19 +65,19 @@ module.exports = function(config) {
 
 
     // level of logging
-    // possible values: config.LOG_DISABLE || 
+    // possible values: config.LOG_DISABLE ||
     //config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_INFO,
 
 
-    // enable / disable watching file and 
+    // enable / disable watching file and
     // executing tests whenever any file changes
     autoWatch: true,
 
 
     // start these browsers
     // available browser launchers: h
-    //ttps://npmjs.org/browse/keyword/karma-launcher
+    // https://npmjs.org/browse/keyword/karma-launcher
     browsers: process.env.TRAVIS ? ['Chrome_travis_ci'] : ['Chrome'],
 
 

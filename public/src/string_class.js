@@ -1,14 +1,14 @@
 /**
  * Prototype object
  */
-const StringProtoype = {
+const StringPrototype = {
 
   /**
-   * Checks if string contains vowels.
-   * @return {Boolean} Returns true or flase.
+   * Checks if string contains vowel.
+   * @return {Boolean} Returns true or false.
    */
   hasVowels() {
-    return /[aeiou]/ig.test(this);
+    return /[aeiou]/i.test(this);
   },
 
   /**
@@ -16,9 +16,8 @@ const StringProtoype = {
    * @return {String} Returns all characters in uppercase.
    */
   toUpper() {
-    return this.replace(/[a-z]/g, function (char) {
-      return String.fromCharCode(char.charCodeAt() - 32);
-    });
+    return this.replace(/[a-z]/g, char => 
+      String.fromCharCode(char.charCodeAt() - 32));
   },
 
   /**
@@ -26,9 +25,8 @@ const StringProtoype = {
    * @return {String} Returns first character in lowercase.
    */
   toLower() {
-    return this.replace(/[A-Z]/g, function (char) {
-      return String.fromCharCode(char.charCodeAt() + 32);
-    });
+    return this.replace(/[A-Z]/g, char => 
+      String.fromCharCode(char.charCodeAt() + 32));
   },
 
   /**
@@ -44,19 +42,20 @@ const StringProtoype = {
    * @return {Boolean} Returns true or false.
    */
   isQuestion() {
-    return /\?$/.test(this);
+    return /[a-z\d](?=\?)/i.test(this.trim());
   },
 
   /**
-   * Creates a list of the words in the string, as an Array.
+   * Creates a list of the words in the string.
    * @return {Array} Returns a list of words.
    */
   words() {
-    return this.replace(/[^a-z]+\s/gi, '').split(/\s/);
+    return this.replace(/[^a-z\d\s]/ig, '')
+      .split(/\s+/);
   },
 
   /**
-   * Checks the number of words in the string.
+   * Returns the number of words in the string.
    * @return {Number} Returns the count of words in string.
    */
   wordCount() {
@@ -68,8 +67,11 @@ const StringProtoype = {
    * @return {String} Returns string a currency.
    */
   toCurrency() {
-    let newString = Number(this).toFixed(2);
-    return newString.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+    const newString = Number(this).toFixed(2);
+    if (isNaN(newString)) {
+      throw new TypeError('Invalid input');
+    }
+    return newString.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
   },
 
   /**
@@ -77,7 +79,11 @@ const StringProtoype = {
    * @return {Number} Number - converted currency.
    */
   fromCurrency() {
-    return parseFloat(this.replace(/,/g, ''));
+    const number = parseFloat(this.replace(/,/g, ''));
+    if(isNaN(number)) {
+      throw new TypeError('Invalid input');
+    }
+    return number;
   },
 
   /**
@@ -85,9 +91,8 @@ const StringProtoype = {
    * @return {String} Returns inverse of string.
    */
   inverseCase() {
-    return this.replace(/[a-z]/gi, function (char) {
-      return char === char.toUpper() ? char.toLower() : char.toUpper();
-    });
+    return this.replace(/[a-z]/gi, char => 
+      char === char.toUpper() ? char.toLower() : char.toUpper());
   },
 
 
@@ -96,9 +101,8 @@ const StringProtoype = {
    * @return {String} Returns a string of alternate characters
    */
   alternatingCase() {
-    return this.replace(/[a-z]/gi, function (char, index) {
-      return index % 2 === 0 ? char.toLower() : char.toUpper();
-    });
+    return this.replace(/[a-z]/gi, (char, index) => 
+    index % 2 === 0 ? char.toLower() : char.toUpper());
   },
 
   /**
@@ -119,10 +123,8 @@ const StringProtoype = {
     const numbers = ['zero', 'one', 'two', 'three', 'four',
       'five', 'six', 'seven', 'eight', 'nine'
     ];
-    return this.replace(/\d/g, function (num) {
-      return numbers[num] + " ";
-    })
-    .trim();
+    return this.replace(/\d/g, num => `${numbers[num]} `)
+      .trim();
   },
 
   /**
@@ -142,4 +144,4 @@ const StringProtoype = {
   }
 };
 
-Object.assign(String.prototype, StringProtoype);
+Object.assign(String.prototype, StringPrototype);
