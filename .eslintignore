@@ -1,6 +1,4 @@
-.vscode
 node_modules
 coverage
+.nyc_output
 public/bower_components
-npm-debug.log.3139295549
-npm-debug.log

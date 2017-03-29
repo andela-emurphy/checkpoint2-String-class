@@ -1,0 +1,16 @@
+sudo: required
+dist: trusty
+language: node_js
+node_js:
+  - "stable"
+before_install:
+  - export CHROME_BIN=chromium-browser
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+
+addons:
+  code_climate:
+    repo_token: 137fb3a377b243c413d0ac4f743bed3e2b21a38230256dfbb71e888c1caf5078
+
+after_success:
+  - CODECLIMATE_REPO_TOKEN=137fb3a377b243c413d0ac4f743bed3e2b21a38230256dfbb71e888c1caf5078 codeclimate-test-reporter < ./coverage/**/lcov.info

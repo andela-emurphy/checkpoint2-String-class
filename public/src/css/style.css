@@ -1,0 +1,39 @@
+select {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+.details {
+  display: none;
+  
+}
+.about,
+.details {
+  margin-top: 40px;
+}
+.input-group {
+  margin-bottom: 20px;
+}
+.navbar-default, 
+.input-group-addon{
+  background-color: #457abb;
+  border-color: #d5dfeb;
+  color: #fff;
+}
+.navbar-default {
+  border-radius: 0px;
+}
+.navbar-default .navbar-brand {
+  color: #ffffff;
+}
+.navbar-default .navbar-nav li a {
+  color: #ffffff
+}
+.navbar-default .navbar-nav li a:hover {
+  color: #ccc
+}
+
+.footer {
+  text-align: center;
+  background-color: #457abb;
+  color: #ffffff;
+}
